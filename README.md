@@ -38,8 +38,8 @@ Applying for international roles requires evaluating both skill alignment and le
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/your-username/opportunity-visa-matcher.git
-   cd opportunity-visa-matcher
+   git clone https://github.com/ZaidAR49/llamaindex-opportunity-visa-matcher.git
+   cd llamaindex-opportunity-visa-matcher
    ```
 
 2. **Configure environment variables:**

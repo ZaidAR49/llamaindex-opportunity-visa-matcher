@@ -1,0 +1,32 @@
+[project]
+name = "llamaindex"
+version = "0.1.0"
+description = "AI-powered evaluation tool for matching candidates to international opportunities and verifying visa eligibility"
+readme = "README.md"
+authors = [
+    { name = "ZaidAR49", email = "148114243+ZaidAR49@users.noreply.github.com" }
+]
+requires-python = ">=3.9"
+dependencies = [
+    "fpdf2>=2.8.4",
+    "jupyterlab>=4.5.11",
+    "llama-index>=0.14.16",
+    "llama-index-embeddings-gemini>=0.4.2",
+    "llama-index-llms-gemini>=0.6.2",
+    "llama-index-llms-openrouter>=0.4.4",
+    "llama-index-readers-web>=0.5.6",
+    "markdown>=3.9",
+    "pypdf>=6.21.2",
+    "python-dotenv>=1.2.1",
+    "streamlit>=1.50.0",
+]
+
+[project.scripts]
+llamaindex = "llamaindex:main"
+
+[build-system]
+requires = ["uv_build>=0.13.5,<0.14.0"]
+build-backend = "uv_build"
+
+[tool.uv]
+link-mode = "copy"

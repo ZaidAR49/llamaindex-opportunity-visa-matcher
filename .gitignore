@@ -1,0 +1,33 @@
+# Environment variables & secrets
+.env
+.env.*
+!.env.example
+*.env
+*.key
+*.pem
+secrets.toml
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+env/
+
+# Python artifacts & caches
+__pycache__/
+*.py[cod]
+*$py.class
+build/
+dist/
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+
+# Jupyter & IDE
+.ipynb_checkpoints/
+.vscode/
+.idea/
+
+# Operating system files
+.DS_Store
+Thumbs.db

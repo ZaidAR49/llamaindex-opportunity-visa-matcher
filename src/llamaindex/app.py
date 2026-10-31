@@ -38,13 +38,11 @@ TEXTS = {
         "api_success": "Gemini API Key applied for this session!",
         "visa_url_label": "🛂 Visa Rules Source URL (Configured from `.env`):",
         "visa_url_help": "URL to fetch and parse live visa rules.",
-        "sample_checkbox": "✨ Use built-in sample files (Alex Dupont CV + Eco-Farm Berlin Opportunity)",
-        "sample_info": "Using built-in sample files from `sample_data/` folder.",
         "cv_upload_label": "📄 Upload Candidate CV (PDF)",
         "job_upload_label": "📋 Upload Opportunity (PDF)",
         "analyze_btn": "🚀 Analyze Match & Check Visa",
         "spinner_msg": "🔍 Processing documents and evaluating match...",
-        "missing_files_err": "Please upload both a CV and an Opportunity PDF (or check 'Use built-in sample files').",
+        "missing_files_err": "Please upload both a CV and an Opportunity PDF.",
         "missing_api_key_err": "Please provide your Gemini API Key in the field above or in the `.env` file.",
         "analysis_success": "Analysis Complete!",
         "report_header": "📊 Evaluation Report",
@@ -74,13 +72,11 @@ TEXTS = {
         "api_success": "تم تفعيل مفتاح Gemini API لهذه الجلسة بنجاح!",
         "visa_url_label": "🛂 رابط مصدر لوائح التأشيرة (مهيأ من `.env`):",
         "visa_url_help": "الرابط لجلب وقراءة لوائح التأشيرات الحية.",
-        "sample_checkbox": "✨ استخدام ملفات العينة المدمجة (سيرة Alex Dupont + فرصة Eco-Farm برلين)",
-        "sample_info": "يتم الآن استخدام ملفات العينة الجاهزة من مجلد `sample_data/`.",
         "cv_upload_label": "📄 رفع السيرة الذاتية للمرشح (PDF)",
         "job_upload_label": "📋 رفع تفاصيل الفرصة (PDF)",
         "analyze_btn": "🚀 تحليل التوافق وفحص التأشيرة",
         "spinner_msg": "🔍 جارٍ معالجة المستندات وتحليل التوافق...",
-        "missing_files_err": "يرجى رفع ملف السيرة الذاتية وتفاصيل الفرصة بصيغة PDF (أو تفعيل 'استخدام ملفات العينة').",
+        "missing_files_err": "يرجى رفع ملف السيرة الذاتية وتفاصيل الفرصة بصيغة PDF.",
         "missing_api_key_err": "يرجى إدخال مفتاح Gemini API في الحقل أعلاه أو في ملف `.env`.",
         "analysis_success": "اكتمل التحليل بنجاح!",
         "report_header": "📊 تقرير التقييم",
@@ -508,39 +504,28 @@ visa_url = st.text_input(
     help=t["visa_url_help"],
 )
 
-# Demo helper: Quick test checkbox
-sample_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", "sample_data"))
-sample_cv_path = os.path.join(sample_dir, "sample_cv.pdf")
-sample_job_path = os.path.join(sample_dir, "sample_opportunity.pdf")
-
-use_sample = st.checkbox(t["sample_checkbox"])
+# Document Upload Section
+col1, col2 = st.columns(2)
+with col1:
+    uploaded_cv = st.file_uploader(t["cv_upload_label"], type=["pdf"])
+with col2:
+    uploaded_job = st.file_uploader(t["job_upload_label"], type=["pdf"])
 
 cv_file_path = None
 opportunity_file_path = None
 
-if use_sample:
-    st.info(t["sample_info"])
-    cv_file_path = sample_cv_path
-    opportunity_file_path = sample_job_path
-else:
-    col1, col2 = st.columns(2)
-    with col1:
-        uploaded_cv = st.file_uploader(t["cv_upload_label"], type=["pdf"])
-    with col2:
-        uploaded_job = st.file_uploader(t["job_upload_label"], type=["pdf"])
+if uploaded_cv and uploaded_job:
+    temp_dir = tempfile.gettempdir()
+    temp_cv_path = os.path.join(temp_dir, uploaded_cv.name)
+    temp_job_path = os.path.join(temp_dir, uploaded_job.name)
 
-    if uploaded_cv and uploaded_job:
-        temp_dir = tempfile.gettempdir()
-        temp_cv_path = os.path.join(temp_dir, uploaded_cv.name)
-        temp_job_path = os.path.join(temp_dir, uploaded_job.name)
+    with open(temp_cv_path, "wb") as f:
+        f.write(uploaded_cv.getbuffer())
+    with open(temp_job_path, "wb") as f:
+        f.write(uploaded_job.getbuffer())
 
-        with open(temp_cv_path, "wb") as f:
-            f.write(uploaded_cv.getbuffer())
-        with open(temp_job_path, "wb") as f:
-            f.write(uploaded_job.getbuffer())
-
-        cv_file_path = temp_cv_path
-        opportunity_file_path = temp_job_path
+    cv_file_path = temp_cv_path
+    opportunity_file_path = temp_job_path
 
 st.divider()
 

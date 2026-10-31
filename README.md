@@ -69,7 +69,7 @@ uv run python -m llamaindex.main
 *(Or directly: `uv run streamlit run src/llamaindex/app.py`)*
 
 Open your browser at `http://localhost:8501`:
-* Upload a Candidate CV (PDF) and an Opportunity Specification (PDF), or check **"✨ Use built-in sample files"** for an instant test.
+* Upload a Candidate CV (PDF) and an Opportunity Specification (PDF).
 * Toggle the UI language or select the desired report output language (English or Arabic) from the sidebar.
 * Click **"🚀 Analyze Match & Check Visa"** to generate the report.
 * Toggle between **"🃏 Colorful Cards"** and **"📄 Full Text"**, copy the output to your clipboard, or download the Markdown report.

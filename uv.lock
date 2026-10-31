@@ -4809,80 +4809,6 @@ wheels = [
 ]
 
 [[package]]
-name = "llama-index-llms-openai-like"
-version = "0.6.0"
-source = { registry = "https://pypi.org/simple" }
-resolution-markers = [
-    "python_full_version > '3.9' and python_full_version < '3.10'",
-    "python_full_version <= '3.9'",
-]
-dependencies = [
-    { name = "llama-index-core", version = "0.14.16", source = { registry = "https://pypi.org/simple" } },
-    { name = "llama-index-llms-openai", version = "0.6.26", source = { registry = "https://pypi.org/simple" } },
-]
-sdist = { url = "https://files.pythonhosted.org/packages/e3/3c/ae4f56a95c926b6c6c030ec4a235147824a11f8979076173fdd6c90a875f/llama_index_llms_openai_like-0.6.0.tar.gz", hash = "sha256:6938cfed62c77876ba43f26519aabf555775fd8e0e7e1af2ddf37a9fc91dca32", size = 5178, upload-time = "2026-01-30T21:13:11.656Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/48/19/018966087d11cab287cb3a37e53c79a045b6ae8442d9eb325d1b5accb70a/llama_index_llms_openai_like-0.6.0-py3-none-any.whl", hash = "sha256:6d97260787ea5a2e6ad15fb547ec5c606b87775dcf9903a698e4c7e9893b367e", size = 4860, upload-time = "2026-01-30T21:13:12.767Z" },
-]
-
-[[package]]
-name = "llama-index-llms-openai-like"
-version = "0.7.2"
-source = { registry = "https://pypi.org/simple" }
-resolution-markers = [
-    "python_full_version >= '3.14'",
-    "python_full_version == '3.13.*'",
-    "python_full_version == '3.12.*'",
-    "python_full_version == '3.11.*'",
-    "python_full_version == '3.10.*'",
-]
-dependencies = [
-    { name = "llama-index-core", version = "0.14.25", source = { registry = "https://pypi.org/simple" } },
-    { name = "llama-index-llms-openai", version = "0.7.10", source = { registry = "https://pypi.org/simple" } },
-]
-sdist = { url = "https://files.pythonhosted.org/packages/3b/a3/16410b28d131aa113ada79f856b78cb68a8e92a1e27255ea9c36c27a5dec/llama_index_llms_openai_like-0.7.2.tar.gz", hash = "sha256:ed9ff73f975dce470f98ac61c982151ba78eedfa3fb9b03894bc1d1312b213ff", size = 5389, upload-time = "2026-04-23T23:05:32.525Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/f4/0c/fdddaee5391d915d3d568d2d8dbdb7c95647e65bb94d4ddb31d47cef5daf/llama_index_llms_openai_like-0.7.2-py3-none-any.whl", hash = "sha256:1f45a7b1cec8fb3f5997684327ffe6c19f93e789c2fff35dc5522465850faf0b", size = 6602, upload-time = "2026-04-23T23:05:31.708Z" },
-]
-
-[[package]]
-name = "llama-index-llms-openrouter"
-version = "0.4.4"
-source = { registry = "https://pypi.org/simple" }
-resolution-markers = [
-    "python_full_version > '3.9' and python_full_version < '3.10'",
-    "python_full_version <= '3.9'",
-]
-dependencies = [
-    { name = "llama-index-core", version = "0.14.16", source = { registry = "https://pypi.org/simple" } },
-    { name = "llama-index-llms-openai-like", version = "0.6.0", source = { registry = "https://pypi.org/simple" } },
-]
-sdist = { url = "https://files.pythonhosted.org/packages/f3/b6/11854f76a64b3ce7dc663fb91f290a113d798ab5c210757ff55bf5768122/llama_index_llms_openrouter-0.4.4.tar.gz", hash = "sha256:a3e11fa619e62a03ab1bfe6a08c567dfc9d1618ed935003bc162808dd76e0d96", size = 5003, upload-time = "2026-01-30T21:13:16.096Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/52/8f/8d506e4b58da76561e05838bfdd6772cff29683dd1ee41c2eb794616c279/llama_index_llms_openrouter-0.4.4-py3-none-any.whl", hash = "sha256:f7eea13bf3c5ee8d0dfb9827228b792861a50588c19eeb78646d59b422dc3efe", size = 4894, upload-time = "2026-01-30T21:13:17.14Z" },
-]
-
-[[package]]
-name = "llama-index-llms-openrouter"
-version = "0.6.0"
-source = { registry = "https://pypi.org/simple" }
-resolution-markers = [
-    "python_full_version >= '3.14'",
-    "python_full_version == '3.13.*'",
-    "python_full_version == '3.12.*'",
-    "python_full_version == '3.11.*'",
-    "python_full_version == '3.10.*'",
-]
-dependencies = [
-    { name = "llama-index-core", version = "0.14.25", source = { registry = "https://pypi.org/simple" } },
-    { name = "llama-index-llms-openai-like", version = "0.7.2", source = { registry = "https://pypi.org/simple" } },
-]
-sdist = { url = "https://files.pythonhosted.org/packages/b6/c6/1cc31c8f9f2a7c7233f2208c95dd094fbc7e8df31ec257fd8f8edc361f17/llama_index_llms_openrouter-0.6.0.tar.gz", hash = "sha256:b22c178315a3e702b10303ade2d84583950f217c83b013c830ffa93e76569ac6", size = 4994, upload-time = "2026-08-31T15:57:26.357Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/92/f7/175a22f1094ff0b3ee92f03966e0c9d7e85c846748f1e97f4a32eb5a76cc/llama_index_llms_openrouter-0.6.0-py3-none-any.whl", hash = "sha256:1609adb24a22cd3e53553c49fe959e328aebc1ef4cde21011b253e19d472e8b6", size = 4896, upload-time = "2026-08-31T15:57:25.631Z" },
-]
-
-[[package]]
 name = "llama-index-readers-file"
 version = "0.5.6"
 source = { registry = "https://pypi.org/simple" }
@@ -5048,8 +4974,6 @@ dependencies = [
     { name = "llama-index", version = "0.14.25", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.10'" },
     { name = "llama-index-embeddings-gemini" },
     { name = "llama-index-llms-gemini" },
-    { name = "llama-index-llms-openrouter", version = "0.4.4", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.10'" },
-    { name = "llama-index-llms-openrouter", version = "0.6.0", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.10'" },
     { name = "llama-index-readers-web", version = "0.5.6", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.10'" },
     { name = "llama-index-readers-web", version = "0.7.0", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.10'" },
     { name = "markdown", version = "3.9", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.10'" },
@@ -5069,7 +4993,6 @@ requires-dist = [
     { name = "llama-index", specifier = ">=0.14.16" },
     { name = "llama-index-embeddings-gemini", specifier = ">=0.4.2" },
     { name = "llama-index-llms-gemini", specifier = ">=0.6.2" },
-    { name = "llama-index-llms-openrouter", specifier = ">=0.4.4" },
     { name = "llama-index-readers-web", specifier = ">=0.5.6" },
     { name = "markdown", specifier = ">=3.9" },
     { name = "pypdf", specifier = ">=6.21.2" },

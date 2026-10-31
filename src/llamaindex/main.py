@@ -8,6 +8,9 @@ import subprocess
 import sys
 from dotenv import load_dotenv
 
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+
 load_dotenv()
 
 

@@ -32,7 +32,7 @@ Applying for international roles requires evaluating both skill alignment and le
 
 * Python 3.10+ (Python 3.11 recommended)
 * [`uv`](https://github.com/astral-sh/uv) package manager
-* An API key for **OpenRouter** (e.g. DeepSeek) or **Google Gemini**
+* Free Google Gemini API Key from [Google AI Studio](https://aistudio.google.com/)
 
 ### Setup
 
@@ -43,13 +43,8 @@ Applying for international roles requires evaluating both skill alignment and le
    ```
 
 2. **Configure environment variables:**
-   Copy `.env.example` to `.env` and supply your API key:
+   Copy `.env.example` to `.env` and supply your Gemini API key:
    ```env
-   # Choose OpenRouter or Google Gemini:
-   OPENROUTER_API_KEY=your_openrouter_api_key
-   OPENROUTER_MODEL=deepseek/deepseek-chat
-
-   # Optional fallback or direct Gemini provider:
    GEMINI_API_KEY=your_gemini_api_key
 
    # Target immigration policy URL:

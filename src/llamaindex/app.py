@@ -32,10 +32,10 @@ TEXTS = {
         "lang_settings": "🌐 Language Settings",
         "ui_lang_label": "Interface Language",
         "report_lang_label": "Report Output Language",
-        "api_warning": "⚠️ **No API Key is configured yet.**",
-        "api_input_label": "Enter your OpenRouter or Gemini API Key below:",
-        "api_help": "Get a key from https://openrouter.ai/keys or https://aistudio.google.com/",
-        "api_success": "API Key applied for this session!",
+        "api_warning": "⚠️ **No Gemini API Key is configured yet.**",
+        "api_input_label": "Enter your Gemini API Key below:",
+        "api_help": "Get a key from https://aistudio.google.com/",
+        "api_success": "Gemini API Key applied for this session!",
         "visa_url_label": "🛂 Visa Rules Source URL (Configured from `.env`):",
         "visa_url_help": "URL to fetch and parse live visa rules.",
         "sample_checkbox": "✨ Use built-in sample files (Alex Dupont CV + Eco-Farm Berlin Opportunity)",
@@ -45,7 +45,7 @@ TEXTS = {
         "analyze_btn": "🚀 Analyze Match & Check Visa",
         "spinner_msg": "🔍 Processing documents and evaluating match...",
         "missing_files_err": "Please upload both a CV and an Opportunity PDF (or check 'Use built-in sample files').",
-        "missing_api_key_err": "Please provide your OpenRouter or Gemini API Key in the field above or in the `.env` file.",
+        "missing_api_key_err": "Please provide your Gemini API Key in the field above or in the `.env` file.",
         "analysis_success": "Analysis Complete!",
         "report_header": "📊 Evaluation Report",
         "error_prefix": "Error during analysis",
@@ -68,10 +68,10 @@ TEXTS = {
         "lang_settings": "🌐 إعدادات اللغة / Language Settings",
         "ui_lang_label": "لغة الواجهة",
         "report_lang_label": "لغة إصدار التقرير",
-        "api_warning": "⚠️ **لا يوجد مفتاح API مهيأ بعد.**",
-        "api_input_label": "أدخل مفتاح OpenRouter أو Gemini API أدناه:",
-        "api_help": "احصل على مفتاح من https://openrouter.ai/keys أو https://aistudio.google.com/",
-        "api_success": "تم تفعيل مفتاح API لهذه الجلسة بنجاح!",
+        "api_warning": "⚠️ **لا يوجد مفتاح Gemini API مهيأ بعد.**",
+        "api_input_label": "أدخل مفتاح Gemini API أدناه:",
+        "api_help": "احصل على مفتاح من https://aistudio.google.com/",
+        "api_success": "تم تفعيل مفتاح Gemini API لهذه الجلسة بنجاح!",
         "visa_url_label": "🛂 رابط مصدر لوائح التأشيرة (مهيأ من `.env`):",
         "visa_url_help": "الرابط لجلب وقراءة لوائح التأشيرات الحية.",
         "sample_checkbox": "✨ استخدام ملفات العينة المدمجة (سيرة Alex Dupont + فرصة Eco-Farm برلين)",
@@ -81,7 +81,7 @@ TEXTS = {
         "analyze_btn": "🚀 تحليل التوافق وفحص التأشيرة",
         "spinner_msg": "🔍 جارٍ معالجة المستندات وتحليل التوافق...",
         "missing_files_err": "يرجى رفع ملف السيرة الذاتية وتفاصيل الفرصة بصيغة PDF (أو تفعيل 'استخدام ملفات العينة').",
-        "missing_api_key_err": "يرجى إدخال مفتاح API في الحقل أعلاه أو في ملف `.env`.",
+        "missing_api_key_err": "يرجى إدخال مفتاح Gemini API في الحقل أعلاه أو في ملف `.env`.",
         "analysis_success": "اكتمل التحليل بنجاح!",
         "report_header": "📊 تقرير التقييم",
         "error_prefix": "حدث خطأ أثناء التحليل",
@@ -480,11 +480,10 @@ st.caption(t["caption"])
 
 st.divider()
 
-# Check for API Key in environment
-has_openrouter = bool(os.getenv("OPENROUTER_API_KEY", "").strip())
+# Check for Gemini API Key in environment
 has_gemini = bool(os.getenv("GEMINI_API_KEY", "").strip())
 
-if not (has_openrouter or has_gemini):
+if not has_gemini:
     st.warning(t["api_warning"])
     custom_api_key = st.text_input(
         t["api_input_label"],
@@ -492,19 +491,11 @@ if not (has_openrouter or has_gemini):
         help=t["api_help"],
     )
     if custom_api_key:
-        if custom_api_key.startswith("sk-or-"):
-            os.environ["OPENROUTER_API_KEY"] = custom_api_key.strip()
-        else:
-            os.environ["GEMINI_API_KEY"] = custom_api_key.strip()
+        os.environ["GEMINI_API_KEY"] = custom_api_key.strip()
         st.success(t["api_success"])
         st.rerun()
 else:
-    active_provider = (
-        f"OpenRouter ({os.getenv('OPENROUTER_MODEL', 'deepseek/deepseek-chat')})"
-        if has_openrouter
-        else "Google Gemini"
-    )
-    st.info(f"⚡ Active AI Model: **{active_provider}**")
+    st.info("⚡ Active AI Model: **Google Gemini (gemini-3.5-flash-lite)**")
 
 # Visa Rules URL input
 default_visa_url = os.getenv(
@@ -563,7 +554,7 @@ if "report_is_arabic" not in st.session_state:
 if st.button(t["analyze_btn"], type="primary", use_container_width=True):
     if not cv_file_path or not opportunity_file_path:
         st.error(t["missing_files_err"])
-    elif not (os.getenv("OPENROUTER_API_KEY") or os.getenv("GEMINI_API_KEY")):
+    elif not os.getenv("GEMINI_API_KEY"):
         st.error(t["missing_api_key_err"])
     else:
         with st.spinner(t["spinner_msg"]):

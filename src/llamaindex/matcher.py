@@ -15,47 +15,29 @@ import requests
 from llama_index.core import Document, Settings, VectorStoreIndex
 from llama_index.embeddings.gemini import GeminiEmbedding
 from llama_index.llms.gemini import Gemini
-from llama_index.llms.openrouter import OpenRouter
 
 load_dotenv()
 
-OPENROUTER_DEFAULT_MODEL = "deepseek/deepseek-chat"
 GEMINI_MODEL = "models/gemini-3.5-flash-lite"
 GEMINI_EMBEDDING_MODEL = "models/gemini-embedding-001"
 
 
-def configure_llama_index_settings() -> str:
-    """Configure LLM and embedding models in LlamaIndex."""
-    openrouter_key = os.getenv("OPENROUTER_API_KEY", "").strip()
+def configure_llama_index_settings() -> None:
+    """Configure Google Gemini LLM and Embedding models in LlamaIndex."""
     gemini_key = os.getenv("GEMINI_API_KEY", "").strip()
+    if not gemini_key:
+        raise ValueError("GEMINI_API_KEY is not configured in .env file.")
 
-    if openrouter_key:
-        model_name = os.getenv("OPENROUTER_MODEL", OPENROUTER_DEFAULT_MODEL).strip()
-        Settings.llm = OpenRouter(
-            model=model_name,
-            api_key=openrouter_key,
-            temperature=0.2,
-            max_tokens=4096,
-        )
-        active_llm = f"OpenRouter ({model_name})"
-    elif gemini_key:
-        Settings.llm = Gemini(
-            model_name=GEMINI_MODEL,
-            api_key=gemini_key,
-            temperature=0.2,
-            max_tokens=4096,
-        )
-        active_llm = f"Google Gemini ({GEMINI_MODEL})"
-    else:
-        raise ValueError("No API key configured in .env file.")
-
-    if gemini_key:
-        Settings.embed_model = GeminiEmbedding(
-            model_name=GEMINI_EMBEDDING_MODEL,
-            api_key=gemini_key,
-        )
-
-    return active_llm
+    Settings.llm = Gemini(
+        model_name=GEMINI_MODEL,
+        api_key=gemini_key,
+        temperature=0.2,
+        max_tokens=4096,
+    )
+    Settings.embed_model = GeminiEmbedding(
+        model_name=GEMINI_EMBEDDING_MODEL,
+        api_key=gemini_key,
+    )
 
 
 def extract_text_from_pdf(pdf_path: str) -> str:
